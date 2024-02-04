@@ -30,6 +30,17 @@ La aplicación está desarrollada usando Python, Git y Docker. Python es el leng
     - /frotar/<n_frases>: Te devuelve una lista de frases auspiciosas en formato JSON, elegidas al azar de un fichero de texto
 - La aplicación web usa la función frotar del fichero bayeta.py, que se encarga de generar y devolver las frases auspiciosas
 
+## Construcción de la imagen con Docker
+- Para construir la imagen de la aplicación, asegúrate de tener instalado Docker en tu máquina y ejecuta el comando `docker build -t nombre .`, reemplazando nombre por el nombre que quieras darle a tu imagen. Por ejemplo, puedes usar `docker build -t bayeta-fortuna-app .`
+
+### Despliegue del contenedor
+- Para desplegar un contenedor con la imagen que has creado, ejecuta el comando `docker run -p puerto:5000 nombre`, reemplazando puerto por el puerto que quieras usar en tu máquina, y nombre por el nombre de la imagen que has creado. Por ejemplo, puedes usar `docker run -p 8000:5000 bayeta-fortuna-app`
+- Esto creará y ejecutará un contenedor con la imagen que has creado, y lo asociará al puerto que has elegido en tu máquina.
+
+### Acceso a la aplicación
+- Para acceder a la aplicación, abre tu navegador y escribe la dirección http://localhost:puerto/, reemplazando puerto por el puerto que has usado en el paso anterior. Por ejemplo, si has usado el puerto 8000, puedes usar http://localhost:8000/
+- Verás el mensaje "Hola, mundo" en la página principal.
+- Para obtener frases auspiciosas, accede a la ruta http://localhost:8000/frotar/<n_frases>, donde <n_frases> es el número de frases que quieres obtener por ejemplo http://localhost:8000/frotar/3. Verás una respuesta en formato JSON con la lista de frases.
 
 ## Autor
 La aplicación ha sido creada por Luis Eduardo Mosquera Sanchez, un estudiante del curso de Especialiazacion de Ciberseguridad del IES Ingeniero de la Cierva.

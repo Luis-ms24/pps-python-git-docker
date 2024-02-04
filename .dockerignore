@@ -1,0 +1,4 @@
+.env # Ignoramos el fichero .env, que puede contener variables de entorno sensibles
+.git # Ignoramos el directorio .git, que contiene la información del repositorio
+.gitignore # Ignoramos el fichero .gitignore, que contiene los nombres de los ficheros o directorios que queremos ignorar en el repositorio
+venv # Ignoramos el directorio venv, que contiene el entorno virtual de Python

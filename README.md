@@ -19,7 +19,17 @@ La aplicación está desarrollada usando Python, Git y Docker. Python es el leng
 - Para instalar las dependencias de este proyecto, usa el comando `pip install -r requirements.txt`. Esto instalará los paquetes que se especifican en el fichero requirements.txt. Este fichero contiene los nombres y las versiones de los paquetes que se usan en este proyecto
 
 ## Ejecución
-- Para ejecutar la aplicación, asegúrate de que tu entorno virtual está activo y ejecuta el comando `python3 app.py`. Esto imprimirá el mensaje "Hola, mundo"
+- Para ejecutar la aplicación, asegúrate de que tu entorno virtual está activo y ejecuta el comando `python3 app.py`. Esto iniciará la aplicación web en el puerto 5000 de tu ordenador
+- Para acceder a la aplicación, abre tu navegador y escribe la dirección http://127.0.0.1:5000/. Verás el mensaje "Hola, mundo" en la página principal
+- Para obtener frases auspiciosas, accede a la ruta http://127.0.0.1:5000/frotar/<n_frases>, donde <n_frases> es el número de frases que quieres obtener por ejemplo http://127.0.0.1:5000/frotar/3. Verás una respuesta en formato JSON con la lista de frases
+
+## Funcionalidades
+- Este proyecto te permite crear y usar una aplicación web con Flask, que te muestra mensajes y frases auspiciosas
+- La aplicación web tiene dos rutas:
+    - /: Te muestra el mensaje "Hola, mundo"
+    - /frotar/<n_frases>: Te devuelve una lista de frases auspiciosas en formato JSON, elegidas al azar de un fichero de texto
+- La aplicación web usa la función frotar del fichero bayeta.py, que se encarga de generar y devolver las frases auspiciosas
+
 
 ## Autor
 La aplicación ha sido creada por Luis Eduardo Mosquera Sanchez, un estudiante del curso de Especialiazacion de Ciberseguridad del IES Ingeniero de la Cierva.

@@ -1,9 +1,22 @@
 import random # Importamos el módulo random de Python
+from prueba_mongo import instanciar, consultar  # Asegúrate de que el nombre del módulo sea el correcto
 
-def frotar(n_frases: int = 1) -> list():
- 
-    frases = [] # Creamos una lista vacía donde guardaremos las frases generadas
-    with open("frases.txt", "r") as f: # Abrimos el fichero de texto que contiene las frases posibles, en modo lectura
-        frases_posibles = f.read().splitlines() # Leemos el contenido del fichero y lo dividimos por líneas, guardando cada frase en una lista
-    frases = random.sample(frases_posibles, n_frases) # Elegimos N frases al azar de la lista de frases, sin repetición, y las guardamos en la lista de frases
-    return frases # Devolvemos la lista de frases
+def frotar(n_frases):
+    # Llamamos a la función instanciar para obtener cliente_mongo y frases_auspiciosas
+    cliente_mongo, frases_auspiciosas = instanciar()
+
+    # Esta función devuelve una lista con n_frases auspiciosas, elegidas al azar de la base de datos de MongoDB
+    frases = []  # Creamos una lista vacía para almacenar las frases
+    docs = consultar(n_frases, frases_auspiciosas)  # Obtenemos los documentos con frases auspiciosas de la base de datos
+    for doc in docs:  # Recorremos cada documento
+        frase = doc["frase"]  # Obtenemos la frase del documento
+        frases.append(frase)  # Añadimos la frase a la lista
+    respuesta = []  # Creamos una lista vacía para almacenar la respuesta
+    for i in range(n_frases):  # Repetimos n_frases veces
+        frase = random.choice(frases)  # Elegimos una frase al azar de la lista
+        respuesta.append(frase)  # Añadimos la frase a la respuesta
+
+    # Cerrar la conexión después de usarla
+    cliente_mongo.close()
+
+    return respuesta  # Devolvemos la respuesta

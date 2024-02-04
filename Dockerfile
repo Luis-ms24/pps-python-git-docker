@@ -17,5 +17,6 @@ COPY . .
 
 # Instala Flask
 RUN pip install Flask
+RUN pip install pymongo
 
 CMD ["python3", "app.py"]

@@ -42,5 +42,23 @@ La aplicación está desarrollada usando Python, Git y Docker. Python es el leng
 - Verás el mensaje "Hola, mundo" en la página principal.
 - Para obtener frases auspiciosas, accede a la ruta http://localhost:8000/frotar/<n_frases>, donde <n_frases> es el número de frases que quieres obtener por ejemplo http://localhost:8000/frotar/3. Verás una respuesta en formato JSON con la lista de frases.
 
+## Uso de MongoDB y Docker
+- Para usar MongoDB y Docker, asegúrate de tener instalados ambos en tu máquina y ejecuta el comando `docker network create nombre`, reemplazando nombre por el nombre que quieras darle a la red. Por ejemplo, puedes usar `docker network create bayeta_net`
+- Esto creará una red con el nombre que le has dado, que permitirá la comunicación entre los contenedores de la aplicación y de MongoDB.
+- Esto creará y ejecutará un contenedor con la imagen oficial de MongoDB, y lo asociará al puerto y a la red que has elegido.
+- Conectamos mongodb con el contenedor `docker network connect bayeta_net mongo`
+
+### Construcción de la imagen
+- Para construir la imagen de la aplicación, ejecuta el comando `docker build -t nombre .`, reemplazando nombre por el nombre que quieras darle a tu imagen. Por ejemplo, puedes usar `docker build -t mongo_bayeta .`
+
+### Despliegue del contenedor
+- Para desplegar un contenedor con la imagen que has creado, ejecuta el comando `docker run -p puerto:5000 --network nombre nombre`, reemplazando puerto por el puerto que quieras usar en tu máquina, nombre por el nombre de la red que has creado, y nombre por el nombre de la imagen que has creado. Por ejemplo, puedes usar `docker run -p 8000:5000 --network bayeta_net mongo_bayeta`
+- Esto creará y ejecutará un contenedor con la imagen que has creado, y lo asociará al puerto y a la red que has elegido.
+
+### Acceso a la aplicación
+- Para acceder a la aplicación, abre tu navegador y escribe la dirección http://localhost:puerto/, reemplazando puerto por el puerto que has usado en el paso anterior. Por ejemplo, si has usado el puerto 8000, puedes usar http://localhost:8000/
+- Verás el mensaje "Hola, mundo" en la página principal.
+- Para obtener frases auspiciosas, accede a la ruta /frotar/<n_frases>, donde <n_frases> es el número de frases que quieres obtener. Verás una respuesta en formato JSON con la lista de frases, elegidas al azar de la base de datos de MongoDB.
+
 ## Autor
 La aplicación ha sido creada por Luis Eduardo Mosquera Sanchez, un estudiante del curso de Especialiazacion de Ciberseguridad del IES Ingeniero de la Cierva.
